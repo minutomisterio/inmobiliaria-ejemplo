@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizonte Inmuebles | Compra, vende y alquila</title>
+<meta name="description" content="Horizonte Inmuebles. Casas y departamentos en venta y alquiler. Consulta por WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1220;--panel:rgba(16,28,48,.74);--em:#10B981;--sky:#38BDF8;--text:#EDF5FF;--muted:#90A6C0;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(620px 460px at 90% 5%,rgba(56,189,248,.22),transparent),radial-gradient(540px 420px at 0 78%,rgba(16,185,129,.18),transparent)}
+h1,h2,h3{font-family:'Manrope',sans-serif;line-height:1.08}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.grad{background:linear-gradient(90deg,var(--em),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+nav{position:fixed;top:0;width:100%;z-index:50;background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.4rem}
+.links{display:flex;gap:26px;color:var(--muted);font-weight:600}
+.links a:hover{color:var(--text)}
+.btn{display:inline-block;padding:14px 28px;border-radius:12px;font-weight:700;border:0;color:#03151a;background:linear-gradient(90deg,var(--em),var(--sky));box-shadow:0 12px 32px -10px var(--em);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
+
+.hero{min-height:100vh;display:grid;align-items:center;padding:110px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.7rem,6.5vw,4.9rem);font-weight:800;letter-spacing:-.03em}
+.hero p{color:var(--muted);max-width:46ch;margin:22px 0 32px;font-size:1.1rem}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.city{position:relative;height:420px;border-radius:26px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#132845,#0B1220 75%);box-shadow:0 40px 80px -30px var(--sky)}
+.city svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .3s ease-out}
+.city .moon{position:absolute;top:36px;right:44px;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#bfe6ff);box-shadow:0 0 50px 8px rgba(56,189,248,.5)}
+
+section{padding:90px 0}
+.title{margin-bottom:34px}
+.title h2{font-size:clamp(2.1rem,4.8vw,3.3rem);letter-spacing:-.02em}
+.title p{color:var(--muted);margin-top:10px}
+.filters{display:flex;flex-wrap:wrap;gap:16px;align-items:end;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:28px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.seg{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{padding:11px 22px;border:0;background:transparent;color:var(--muted);font-weight:700}
+.seg button.on{background:var(--em);color:#03151a}
+.f label{display:block;font-size:.85rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+select{padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;min-width:150px}
+input[type=range]{accent-color:var(--em);width:190px}
+.val{color:var(--em);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:22px;padding:14px;transition:border-color .3s,box-shadow .3s;will-change:transform;position:relative}
+.card:hover{border-color:var(--em);box-shadow:0 25px 50px -22px var(--em)}
+.card.sel{border-color:var(--sky);box-shadow:0 0 0 2px var(--sky)}
+.pic{height:150px;border-radius:14px;display:grid;place-items:center;font-size:3.6rem;position:relative}
+.pic span{position:absolute;top:10px;left:10px;font:700 .72rem 'Manrope';background:rgba(0,0,0,.45);padding:3px 10px;border-radius:999px}
+.card h3{font-size:1.15rem;margin:14px 4px 2px}
+.card p{color:var(--muted);font-size:.88rem;margin:0 4px 6px}
+.spec{display:flex;gap:14px;color:var(--muted);font-size:.85rem;margin:0 4px 14px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin:0 4px 4px}
+.foot b{font-family:'Manrope',sans-serif;font-size:1.25rem}
+.acts{display:flex;gap:8px}
+.acts button{border-radius:10px;padding:8px 12px;font-weight:700;font-size:.8rem;border:1px solid var(--em);background:transparent;color:var(--text)}
+.acts button:hover{background:var(--em);color:#03151a}
+.acts .cmp{border-color:var(--sky)}
+.acts .cmp:hover,.acts .cmp.on{background:var(--sky);color:#03151a}
+.empty{color:var(--muted);grid-column:1/-1;text-align:center;padding:30px}
+
+.compare{margin-top:32px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:30px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.compare h3{font-size:1.6rem;margin-bottom:6px}
+.compare>p{color:var(--muted);margin-bottom:18px}
+.crow{margin-bottom:16px}
+.crow>span{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+.cb{display:grid;grid-template-columns:130px 1fr 90px;align-items:center;gap:10px;margin-bottom:6px;font-size:.85rem;color:var(--muted)}
+.cb div{height:12px;background:rgba(255,255,255,.07);border-radius:7px;overflow:hidden}
+.cb i{display:block;height:100%;width:0;border-radius:7px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.cb b{color:var(--text);text-align:right}
+.perks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.perk{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--panel)}
+.perk h3{font-size:1.1rem;margin-bottom:6px}
+.perk p{color:var(--muted);font-size:.93rem}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--em);color:#03151a;padding:12px 22px;border-radius:999px;font-weight:700;transition:transform .35s;z-index:100}
+#toast.on{transform:translate(-50%,0)}
+
+@media(max-width:860px){.links{display:none}.hero .wrap{grid-template-columns:1fr}.city{height:300px}.cb{grid-template-columns:100px 1fr 76px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a href="#inicio" class="logo">Hori<span class="grad">zonte</span></a>
+  <div class="links"><a href="#propiedades">Propiedades</a><a href="#confianza">Por qué elegirnos</a></div>
+  <a href="#propiedades" class="btn">Buscar</a>
+</div></nav>
+
+<header class="hero" id="inicio"><div class="wrap">
+  <div>
+    <h1>Encuentra el lugar <span class="grad">donde quieres vivir</span>.</h1>
+    <p>Casas, departamentos y locales en venta y alquiler. Filtra por lo que necesitas, compara dos propiedades y consulta por WhatsApp.</p>
+    <div class="cta"><a href="#propiedades" class="btn">Ver propiedades</a><a href="#confianza" class="btn ghost">Cómo trabajamos</a></div>
+  </div>
+  <div class="city" id="city" role="img" aria-label="Ciudad de noche con edificios iluminados">
+    <div class="moon"></div><svg id="sky" viewBox="0 0 400 420" preserveAspectRatio="xMidYMax slice"></svg>
+  </div>
+</div></header>
+
+<section id="propiedades"><div class="wrap">
+  <div class="title"><h2>Propiedades</h2><p>Filtra, elige hasta dos con “Comparar” y consulta con “Consultar”.</p></div>
+  <div class="filters">
+    <div class="seg" id="op"><button class="on" data-o="Venta">Venta</button><button data-o="Alquiler">Alquiler</button></div>
+    <div class="f"><label for="tp">Tipo</label><select id="tp"><option>Todos</option><option>Departamento</option><option>Casa</option><option>Local</option></select></div>
+    <div class="f"><label for="mx">Precio máx.: <span class="val" id="mv"></span></label><input type="range" id="mx"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="compare" id="cmp" hidden></div>
+</div></section>
+
+<section id="confianza"><div class="wrap">
+  <div class="title"><h2>Por qué elegirnos</h2></div>
+  <div class="perks">
+    <div class="perk"><h3>Propiedades verificadas</h3><p>Revisamos documentación y estado de cada inmueble.</p></div>
+    <div class="perk"><h3>Visitas coordinadas</h3><p>Agenda tu visita por WhatsApp, incluso en fin de semana.</p></div>
+    <div class="perk"><h3>Acompañamiento legal</h3><p>Te guiamos en boleto, escritura y contratos de alquiler.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2026 Horizonte Inmuebles · Página de ejemplo</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const PHONE='5491100000000'; // reemplazar por el número real del cliente
+const $=id=>document.getElementById(id);
+const P=[
+ {n:'Depto luminoso 2 amb.',z:'Palermo',t:'Departamento',o:'Venta',p:118000,m:48,a:2,e:'🏢',c:'#0e7490'},
+ {n:'Depto con balcón 3 amb.',z:'Belgrano',t:'Departamento',o:'Venta',p:165000,m:72,a:3,e:'🏢',c:'#047857'},
+ {n:'Casa con jardín',z:'San Isidro',t:'Casa',o:'Venta',p:290000,m:210,a:5,e:'🏡',c:'#1d4ed8'},
+ {n:'Casa moderna 4 amb.',z:'Nordelta',t:'Casa',o:'Venta',p:340000,m:240,a:4,e:'🏡',c:'#0f766e'},
+ {n:'Local sobre avenida',z:'Centro',t:'Local',o:'Venta',p:135000,m:60,a:1,e:'🏬',c:'#0369a1'},
+ {n:'Monoambiente amoblado',z:'Recoleta',t:'Departamento',o:'Alquiler',p:520,m:32,a:1,e:'🏢',c:'#0e7490'},
+ {n:'Depto 2 amb. con cochera',z:'Caballito',t:'Departamento',o:'Alquiler',p:780,m:55,a:2,e:'🏢',c:'#047857'},
+ {n:'Casa 3 amb. con patio',z:'Ramos Mejía',t:'Casa',o:'Alquiler',p:1150,m:120,a:3,e:'🏡',c:'#1d4ed8'},
+ {n:'Local esquina',z:'Villa Urquiza',t:'Local',o:'Alquiler',p:950,m:70,a:1,e:'🏬',c:'#0369a1'}
+];
+const usd=n=>'USD '+n.toLocaleString('es-AR');
+let op='Venta',pick=[];
+function range(){const v=op==='Venta'?[50000,400000,10000,400000]:[300,1500,50,1500];const r=$('mx');r.min=v[0];r.max=v[1];r.step=v[2];r.value=v[3]}
+function list(){
+  const tp=$('tp').value,mx=+$('mx').value;$('mv').textContent=usd(mx)+(op==='Alquiler'?'/mes':'');
+  const L=P.map((x,i)=>({...x,i})).filter(x=>x.o===op&&(tp==='Todos'||x.t===tp)&&x.p<=mx);
+  pick=pick.filter(i=>L.some(x=>x.i===i));
+  $('grid').innerHTML=L.length?L.map(x=>`<article class="card ${pick.includes(x.i)?'sel':''}"><div class="pic" style="background:linear-gradient(135deg,${x.c},#0b1220)"><span>${x.t}</span>${x.e}</div>
+   <h3>${x.n}</h3><p>${x.z}</p><div class="spec"><span>${x.m} m²</span><span>${x.a} amb.</span></div>
+   <div class="foot"><b>${usd(x.p)}${x.o==='Alquiler'?'<small style="font:600 .75rem Source Sans 3;color:var(--muted)">/mes</small>':''}</b>
+   <div class="acts"><button class="cmp ${pick.includes(x.i)?'on':''}" data-i="${x.i}">Comparar</button><button class="ask" data-i="${x.i}">Consultar</button></div></div></article>`).join(''):'<p class="empty">No hay propiedades con esos filtros. Prueba subir el precio máximo.</p>';
+  $('grid').querySelectorAll('.cmp').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;pick=pick.includes(i)?pick.filter(k=>k!==i):[...pick.slice(-1),i];list()});
+  $('grid').querySelectorAll('.ask').forEach(b=>b.onclick=()=>{const x=P[+b.dataset.i];
+    window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(`Hola Horizonte! Me interesa "${x.n}" en ${x.z} (${usd(x.p)}${x.o==='Alquiler'?'/mes':''}). ¿Podemos coordinar una visita?`)}`,'_blank');
+    const t=$('toast');t.textContent='Abriendo WhatsApp…';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1600)});
+  $('grid').querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${-y*10}deg) rotateY(${x*10}deg)`});
+    c.addEventListener('mouseleave',()=>c.style.transform='');
+  });
+  compare();
+}
+function compare(){
+  const c=$('cmp');
+  if(pick.length<2){c.hidden=pick.length===0;if(pick.length===1)c.innerHTML='<h3>Comparador</h3><p>Elige una segunda propiedad para compararlas.</p>';return}
+  const [a,b]=pick.map(i=>P[i]);c.hidden=false;
+  const rows=[['Precio',x=>x.p,usd],['Superficie',x=>x.m,v=>v+' m²'],['Precio por m²',x=>x.p/x.m,v=>usd(Math.round(v))],['Ambientes',x=>x.a,v=>v]];
+  c.innerHTML=`<h3>Comparador</h3><p>${a.n} (${a.z}) frente a ${b.n} (${b.z}).</p>`+rows.map(r=>{
+    const va=r[1](a),vb=r[1](b),mx=Math.max(va,vb)||1;
+    return `<div class="crow"><span>${r[0]}</span>
+     <div class="cb"><em style="font-style:normal">${a.z}</em><div><i style="width:${va/mx*100}%;background:var(--em)"></i></div><b>${r[2](va)}</b></div>
+     <div class="cb"><em style="font-style:normal">${b.z}</em><div><i style="width:${vb/mx*100}%;background:var(--sky)"></i></div><b>${r[2](vb)}</b></div></div>`}).join('');
+}
+$('op').querySelectorAll('button').forEach(b=>b.onclick=()=>{op=b.dataset.o;$('op').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));pick=[];range();list()});
+$('tp').onchange=list;$('mx').addEventListener('input',list);
+range();list();
+
+// ciudad con ventanas que se encienden
+const svg=$('sky');let h='';
+const B=[[10,150,70],[85,90,60],[150,190,80],[240,120,64],[310,170,80]];
+B.forEach((b,i)=>{const [x,y,w]=b;h+=`<rect x="${x}" y="${420-y-20}" width="${w}" height="${y+20}" fill="${i%2?'#0f2038':'#13294a'}"/>`;
+  for(let r=0;r<Math.floor(y/22);r++)for(let c=0;c<Math.floor(w/18);c++)h+=`<rect class="wn" x="${x+8+c*18}" y="${420-y-8+r*22}" width="9" height="11" rx="1" fill="#1b3358"/>`});
+svg.innerHTML=h;
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches,wn=svg.querySelectorAll('.wn'),cols=['#FCD34D','#10B981','#38BDF8'];
+wn.forEach(w=>{if(Math.random()<.35)w.setAttribute('fill',cols[Math.random()*3|0])});
+if(!still)setInterval(()=>{const w=wn[Math.random()*wn.length|0];w.setAttribute('fill',Math.random()<.55?cols[Math.random()*3|0]:'#1b3358')},260);
+$('city').addEventListener('mousemove',e=>{const r=$('city').getBoundingClientRect();svg.style.transform=`translateX(${-((e.clientX-r.left)/r.width-.5)*24}px)`});
+$('city').addEventListener('mouseleave',()=>svg.style.transform='');
+</script>
+</body>
+</html>
